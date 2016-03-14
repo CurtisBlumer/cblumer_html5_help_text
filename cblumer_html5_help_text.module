@@ -1,0 +1,31 @@
+<?php
+
+// Implement hook_field_widget_form_alter()
+function cblumer_html5_help_text_field_widget_form_alter(&$element, &$form_state, &$context) {
+  // If some condition is matched based on the element provided...
+  /*if (isset($element[0]) && $element[0]['#field_name'] == 'field_test') {
+    // Alter the description using your more permissive set of tags
+    $reworked = filter_xss($context['instance']['description'], _cblumer_html5_help_text_field_filter_xss_allowed_tags());
+    $element[0]['#description'] = theme('ctools_collapsible', array('handle' => 'Help text', 'content' => $reworked, 'collapsed' => TRUE));
+  }*/
+  
+  $add_elements = filter_xss($context['instance']['description'], _cblumer_html5_help_text_field_filter_xss_allowed_tags());
+}
+
+// Provide a more permissive set of tags to be used with filter_xss()
+function _cblumer_html5_help_text_field_filter_xss_allowed_tags() {
+  // HTML5 tags array
+  $html5_tags = [
+    'abbr',
+    'cite',
+    'code',
+    'dd',
+    'dl',
+    'dt',
+    'kbd',
+    'mark',
+    'samp',
+    'var'];
+  
+  return array_merge(_field_filter_xss_allowed_tags(), $html5_tags);
+}

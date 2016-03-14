@@ -1,0 +1,9 @@
+name = HTML5 Help Text
+description = Add HTML5 elements to field help text.
+core = 7.x
+package = CurtisBlumer.com
+php = 5.6
+version = 1.0
+# dependencies[] = 
+# files[] = 
+# configure = 
